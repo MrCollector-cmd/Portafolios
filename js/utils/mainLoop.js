@@ -1,5 +1,4 @@
 import { settingsAnimate } from "./settingsAnimate.js";
-import { honeycomb } from "./honeycomb.js";
 const canvas = document.getElementById("view");
 const ctx = canvas.getContext("2d");
 const view = document.getElementById("viewInf");
@@ -62,7 +61,9 @@ const mainLoop = {
 
         // Ejecutar la escritura y el parpadeo del cursor
         if (settingsAnimate.animateWriting && !settingsAnimate.animateIni) {
-            settingsAnimate.iniWriting();
+            document.fonts.ready.then(() => {
+                settingsAnimate.iniWriting()
+            });
         }
 
         if (settingsAnimate.cursorBlinking) {
